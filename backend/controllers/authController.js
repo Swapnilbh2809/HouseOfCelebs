@@ -6,7 +6,7 @@ const COOKIE_NAME = 'adminToken';
 
 const getCookieOptions = () => ({
   httpOnly: true,
-  sameSite: 'lax',
+  sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
   secure: process.env.NODE_ENV === 'production',
   maxAge: 1000 * 60 * 60 * 24
 });
@@ -60,7 +60,7 @@ const loginAdmin = async (req, res) => {
 const logoutAdmin = async (_req, res) => {
   res.clearCookie(COOKIE_NAME, {
     httpOnly: true,
-    sameSite: 'lax',
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
     secure: process.env.NODE_ENV === 'production'
   });
 
