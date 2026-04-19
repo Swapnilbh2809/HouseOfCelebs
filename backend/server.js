@@ -12,6 +12,8 @@ const app = express();
 const passport = require('./auth/googleAuth');
 const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
 
+app.set('trust proxy', 1);
+
 // Middleware
 app.use(
   cors({
