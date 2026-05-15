@@ -2,10 +2,17 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const User = require('../models/User');
 
+const BACKEND_URL = (
+  process.env.GOOGLE_CALLBACK_BASE_URL ||
+  process.env.BACKEND_URL ||
+  `http://localhost:${process.env.PORT || 5000}`
+).replace(/\/$/, '');
+
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID || 'placeholder',
     clientSecret: process.env.GOOGLE_CLIENT_SECRET || 'placeholder',
-    callbackURL: "/api/auth/google/callback"
+    callbackURL: `${BACKEND_URL}/api/auth/google/callback`,
+    proxy: true
   },
   async (accessToken, refreshToken, profile, done) => {
     try {

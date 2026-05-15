@@ -2,12 +2,14 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { AlertCircle, LoaderCircle } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 
 const BACKEND_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 const RoomDetails = () => {
   const { type } = useParams();
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   const pkg = type === 'silver' ? {
     name: 'Silver Experience', price: 1599, decor: 'Flower + Balloon + Lights'
@@ -26,9 +28,10 @@ const RoomDetails = () => {
   const [endP, setEndP] = useState('PM');
 
   const [addons, setAddons] = useState([]);
-  const [customerName, setCustomerName] = useState('');
+  const [customerName, setCustomerName] = useState(user?.name || '');
   const [phone, setPhone] = useState('');
-  const [email, setEmail] = useState('');
+  const [phoneError, setPhoneError] = useState('');
+  const [email, setEmail] = useState(user?.email || '');
   const [specialRequests, setSpecialRequests] = useState('');
   const [timeError, setTimeError] = useState('');
   const [availabilityError, setAvailabilityError] = useState('');
@@ -144,6 +147,18 @@ const RoomDetails = () => {
       return;
     }
 
+    if (startTotal < 600 || startTotal > 1140) {
+      setTimeError('Bookings must start between 10:00 AM and 7:00 PM');
+      setDuration(0);
+      return;
+    }
+
+    if (endTotal < 600 || endTotal > 1140) {
+      setTimeError('Bookings must end between 10:00 AM and 7:00 PM');
+      setDuration(0);
+      return;
+    }
+
     const diffMins = endTotal - startTotal;
     if (diffMins < 120) {
       setTimeError('Minimum booking duration is 2 hours');
@@ -196,7 +211,7 @@ const RoomDetails = () => {
     return total;
   };
 
-  const canProceed = date && duration >= 2 && customerName && phone && !timeError && !selectionConflictsWithBlockedRange;
+  const canProceed = date && duration >= 2 && customerName && phone && phone.length === 10 && !timeError && !selectionConflictsWithBlockedRange;
 
   return (
     <div className="min-h-screen pt-24 pb-20 bg-deep-charcoal">
@@ -309,10 +324,30 @@ const RoomDetails = () => {
               </div>
 
               <h3 className="text-2xl font-bebas text-vintage-cream mt-10 mb-6 tracking-wide border-b border-white/10 pb-4">2. Your Details</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input type="text" placeholder="Full Name" value={customerName} onChange={(e) => setCustomerName(e.target.value)} className="w-full bg-[#222] border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-marquee-red" />
-                <input type="text" placeholder="Phone Number" value={phone} onChange={(e) => setPhone(e.target.value)} className="w-full bg-[#222] border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-marquee-red" />
-                <input type="email" placeholder="Email (for confirmations)" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full md:col-span-2 bg-[#222] border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-marquee-red" />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
+                <div className="w-full">
+                  <input type="text" placeholder="Full Name" value={customerName} onChange={(e) => setCustomerName(e.target.value)} className="w-full bg-[#222] border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-marquee-red" />
+                </div>
+                <div className="w-full flex flex-col">
+                  <input 
+                    type="tel" 
+                    placeholder="Phone Number" 
+                    value={phone} 
+                    onChange={(e) => {
+                      const val = e.target.value.replace(/\D/g, '');
+                      setPhone(val);
+                      if (val.length === 10) setPhoneError('');
+                    }} 
+                    onBlur={() => {
+                      if (phone && phone.length !== 10) {
+                        setPhoneError('please enter a valid number');
+                      }
+                    }}
+                    className={`w-full bg-[#222] border ${phoneError ? 'border-marquee-red focus:border-marquee-red' : 'border-white/10 focus:border-marquee-red'} rounded-xl px-4 py-3 text-white focus:outline-none`} 
+                  />
+                  {phoneError && <div className="text-marquee-red text-xs mt-2 ml-2">{phoneError}</div>}
+                </div>
+                <input type="email" placeholder="Email (for confirmations)" value={email} onChange={(e) => { if (!user) setEmail(e.target.value); }} readOnly={!!user} className={`w-full md:col-span-2 ${user ? 'bg-[#1a1a1a] border-white/5 cursor-not-allowed text-white/60' : 'bg-[#222] border-white/10 text-white focus:border-marquee-red'} border rounded-xl px-4 py-3 focus:outline-none`} />
                 <textarea placeholder="Special Requests?" value={specialRequests} onChange={(e) => setSpecialRequests(e.target.value)} className="w-full md:col-span-2 bg-[#222] border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-marquee-red h-24" />
               </div>
             </div>

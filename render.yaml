@@ -12,6 +12,8 @@ services:
         value: 5000
       - key: FRONTEND_URL
         value: https://your-vercel-app-url.app
+      - key: BACKEND_URL
+        value: https://houseofcelebs.onrender.com
       # Secrets that you will add securely in the Render Dashboard
       - key: MONGODB_URI
         sync: false

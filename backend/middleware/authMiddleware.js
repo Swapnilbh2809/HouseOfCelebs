@@ -19,7 +19,7 @@ const requireAuth = async (req, res, next) => {
     req.admin = admin;
     next();
   } catch (error) {
-    return res.status(401).json({ message: 'Invalid or expired session' });
+    return res.status(401).json({ message: error.message || 'Invalid or expired session' });
   }
 };
 

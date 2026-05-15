@@ -10,10 +10,14 @@ import AuthSuccess from './pages/AuthSuccess';
 import Login from './pages/Login';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import { AuthProvider } from './context/AuthContext';
+import ProtectedRoute from './components/ProtectedRoute';
+import UserDashboard from './pages/UserDashboard';
 
 function App() {
   return (
     <Router>
+      <AuthProvider>
       <div className="flex flex-col min-h-screen">
         <Navbar />
         <main className="flex-grow">
@@ -27,6 +31,11 @@ function App() {
             <Route path="/admin/manage-admins" element={<AdminManagement />} />
             <Route path="/auth-success" element={<AuthSuccess />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/dashboard" element={
+              <ProtectedRoute>
+                <UserDashboard />
+              </ProtectedRoute>
+            } />
           </Routes>
         </main>
         <Footer />
@@ -36,6 +45,7 @@ function App() {
           </svg>
         </a>
       </div>
+      </AuthProvider>
     </Router>
   );
 }

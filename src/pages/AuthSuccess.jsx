@@ -1,34 +1,34 @@
 import { useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { LoaderCircle } from 'lucide-react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import UserLoadingScreen from '../components/UserLoadingScreen';
 
-const AuthSuccess = () => {
+export default function AuthSuccess() {
+  const [searchParams] = useSearchParams();
+  const { login } = useAuth();
   const navigate = useNavigate();
-  const location = useLocation();
 
   useEffect(() => {
-    // Parse the token from URL query params
-    const queryParams = new URLSearchParams(location.search);
-    const token = queryParams.get('token');
+    const token = searchParams.get('token');
+    const error = searchParams.get('error');
 
-    if (token) {
-      // Store JWT token securely (localStorage is easiest for client)
-      localStorage.setItem('token', token);
-      
-      // Clean up URL and redirect to dashboard/home
-      navigate('/', { replace: true });
-    } else {
-      // Missing token, error out
-      navigate('/', { replace: true });
+    if (error || !token) {
+      navigate('/?auth=failed', { replace: true });
+      return;
     }
-  }, [location, navigate]);
 
-  return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-deep-charcoal">
-      <LoaderCircle className="w-12 h-12 text-marquee-red animate-spin mb-4" />
-      <p className="text-white/60 font-inter">Authenticating safely...</p>
-    </div>
-  );
-};
+    login(token)
+      .then(() => {
+        const pendingCheckout = localStorage.getItem('hoc_pending_checkout');
+        if (pendingCheckout) {
+          localStorage.removeItem('hoc_pending_checkout');
+          navigate('/checkout', { state: JSON.parse(pendingCheckout), replace: true });
+        } else {
+          navigate('/dashboard', { replace: true });
+        }
+      })
+      .catch(() => navigate('/?auth=failed', { replace: true }));
+  }, []);
 
-export default AuthSuccess;
+  return <UserLoadingScreen />;
+}
