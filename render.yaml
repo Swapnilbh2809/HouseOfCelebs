@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: hoc-backend
+    name: reelm-backend
     env: node
     rootDir: backend
     buildCommand: npm install
@@ -11,9 +11,9 @@ services:
       - key: PORT
         value: 5000
       - key: FRONTEND_URL
-        value: https://your-vercel-app-url.app
+        value: https://reelmprivatetheatre.vercel.app
       - key: BACKEND_URL
-        value: https://houseofcelebs.onrender.com
+        value: https://reelm-backend.onrender.com
       # Secrets that you will add securely in the Render Dashboard
       - key: MONGODB_URI
         sync: false

@@ -81,7 +81,7 @@ const Checkout = () => {
         key: data.key,
         amount: data.amount,
         currency: data.currency,
-        name: 'House of Celebs',
+        name: 'REELM',
         description: `${roomType} experience booking`,
         order_id: data.orderId,
         prefill: {
@@ -224,7 +224,7 @@ const Checkout = () => {
             
             <button 
               onClick={() => {
-                localStorage.setItem('hoc_pending_checkout', JSON.stringify(state));
+                localStorage.setItem('reelm_pending_checkout', JSON.stringify(state));
                 window.location.href = `${BACKEND_URL}/api/auth/google`;
               }}
               className="w-full py-3 rounded-full font-inter font-bold text-sm bg-white text-black hover:bg-gray-200 transition-colors flex items-center justify-center space-x-2"

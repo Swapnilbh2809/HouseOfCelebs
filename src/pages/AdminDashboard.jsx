@@ -650,7 +650,7 @@ const AdminDashboard = () => {
                             key={booking._id}
                             className={`hover:bg-zinc-800/50 transition-colors text-zinc-300 text-sm ${isCancelled ? 'opacity-40 grayscale' : ''}`}
                           >
-                            <td className="p-4 font-mono text-xs">HOC-{booking._id.slice(-5).toUpperCase()}</td>
+                            <td className="p-4 font-mono text-xs">REELM-{booking._id.slice(-5).toUpperCase()}</td>
                             <td className="p-4 font-medium">{booking.customerName}</td>
                             <td className="p-4 text-zinc-400">
                               {displayDate} <br /> {booking.startTime} - {booking.endTime}

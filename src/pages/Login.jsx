@@ -9,13 +9,13 @@ const Login = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <img src="/hoc-icon.png" alt="House of Celebs Logo" className="h-20 mx-auto mb-6 object-contain" />
+        <img src="/reelm-icon.png" alt="REELM Logo" className="h-20 mx-auto mb-6 object-contain" />
         <h1 className="text-3xl font-bebas text-vintage-cream mb-2 tracking-widest">WELCOME BACK</h1>
         <p className="text-white/60 font-inter text-sm mb-10">Sign in to manage your bookings and access premium features.</p>
 
         <GoogleLoginButton />
 
-        <p className="text-white/40 text-xs mt-8">By continuing, you agree to House of Celeb's Terms of Service and Privacy Policy.</p>
+        <p className="text-white/40 text-xs mt-8">By continuing, you agree to REELM's Terms of Service and Privacy Policy.</p>
       </motion.div>
     </div>
   );

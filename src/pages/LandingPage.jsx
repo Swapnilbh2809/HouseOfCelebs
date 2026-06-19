@@ -13,7 +13,7 @@ const LandingPage = () => {
     { id: 2, name: "Rahul Mehta", photo: "https://ui-avatars.com/api/?name=Rahul+Mehta&background=random", rating: 5, date: "1 month ago", text: "Best private theatre in Delhi. The screen quality and sound system are top notch. Total privacy and the food add-ons were delicious." },
     { id: 3, name: "Anjali K.", photo: "https://ui-avatars.com/api/?name=Anjali+K&background=random", rating: 5, date: "3 months ago", text: "Booked the Silver package for our anniversary. The team was so cooperative and made our day special! Highly recommended for couples." },
     { id: 4, name: "Vikram Singh", photo: "https://ui-avatars.com/api/?name=Vikram+Singh&background=random", rating: 5, date: "4 months ago", text: "Incredible vibe and aesthetics! We brought our PlayStation and hooked it up to the projector. The staff was incredibly helpful." },
-    { id: 5, name: "Neha Gupta", photo: "https://ui-avatars.com/api/?name=Neha+Gupta&background=random", rating: 5, date: "5 months ago", text: "The balloon decorations and the fog entry were just spectacular. Truly an unforgettable night. Thank you House of Celebs!" }
+    { id: 5, name: "Neha Gupta", photo: "https://ui-avatars.com/api/?name=Neha+Gupta&background=random", rating: 5, date: "5 months ago", text: "The balloon decorations and the fog entry were just spectacular. Truly an unforgettable night. Thank you REELM!" }
   ];
 
   useEffect(() => {
@@ -57,7 +57,7 @@ const LandingPage = () => {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bebas text-vintage-cream mb-6 tracking-wider drop-shadow-lg">
-              HOUSE OF CELEBS
+              REELM
             </h1>
             <p className="text-2xl md:text-3xl text-gold font-bebas tracking-wide mb-4">
               Your Private Theatre. Your Unforgettable Moment.

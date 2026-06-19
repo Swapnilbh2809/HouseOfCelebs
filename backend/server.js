@@ -27,7 +27,7 @@ app.use(express.json()); // Allows parsing JSON bodies
 
 // Express Session
 app.use(session({
-  secret: process.env.SESSION_SECRET || 'houseofcelebs_secret',
+  secret: process.env.SESSION_SECRET || 'reelm_secret',
   resave: false,
   saveUninitialized: false,
   cookie: {
@@ -42,7 +42,7 @@ app.use(passport.session());
 
 // Basic route to test server
 app.get('/', (req, res) => {
-  res.send('House of Celebs API is running...');
+  res.send('REELM API is running...');
 });
 
 // Import Routes

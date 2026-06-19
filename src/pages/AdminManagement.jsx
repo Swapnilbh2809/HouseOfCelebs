@@ -303,7 +303,7 @@ const AdminManagement = () => {
                   value={createEmail}
                   onChange={(event) => setCreateEmail(event.target.value)}
                   className="w-full rounded-2xl border border-white/10 bg-[#181818] px-5 py-4 text-white outline-none transition-colors focus:border-gold/50"
-                  placeholder="manager@houseofcelebs.com"
+                  placeholder="manager@reelm.com"
                   required
                 />
               </div>

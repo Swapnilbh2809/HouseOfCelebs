@@ -19,9 +19,9 @@ export default function AuthSuccess() {
 
     login(token)
       .then(() => {
-        const pendingCheckout = localStorage.getItem('hoc_pending_checkout');
+        const pendingCheckout = localStorage.getItem('reelm_pending_checkout');
         if (pendingCheckout) {
-          localStorage.removeItem('hoc_pending_checkout');
+          localStorage.removeItem('reelm_pending_checkout');
           navigate('/checkout', { state: JSON.parse(pendingCheckout), replace: true });
         } else {
           navigate('/dashboard', { replace: true });

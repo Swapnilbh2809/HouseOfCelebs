@@ -27,7 +27,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-24">
           <Link to="/" className="flex items-center space-x-2">
-            <img src="/hoc-icon.png" alt="House of Celebs Logo" className="h-24 w-auto object-contain cursor-pointer transform hover:scale-105 transition-transform duration-300" />
+            <img src="/reelm-icon.png" alt="REELM Logo" className="h-24 w-auto object-contain cursor-pointer transform hover:scale-105 transition-transform duration-300" />
           </Link>
           <div className="hidden md:flex space-x-8">
             <Link to="/" className="text-white/80 hover:text-white transition-colors">Home</Link>
