@@ -122,7 +122,7 @@ const Confirmation = () => {
               BACK TO HOME
             </motion.button>
           </Link>
-          <a href="https://wa.me/919958996834" target="_blank" rel="noreferrer" className="flex-1">
+          <a href="https://wa.me/919034412822" target="_blank" rel="noreferrer" className="flex-1">
              <motion.button className="w-full bg-marquee-red text-white py-4 rounded-full font-bebas text-xl tracking-wider shadow-[0_0_15px_rgba(211,47,47,0.4)] hover:bg-red-600 transition-colors">
               WHATSAPP US
             </motion.button>
