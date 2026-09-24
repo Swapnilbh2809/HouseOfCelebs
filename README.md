@@ -142,6 +142,6 @@ VITE_API_URL=http://localhost:5000
   - `PATCH /api/bookings/:id/payment-status`
   - `DELETE /api/bookings/:id`
 
-## License
 
-Add a license if you plan to open-source this repository.
+
+
