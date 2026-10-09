@@ -1,12 +1,12 @@
 # House of Celebs — Booking & Admin Platform
 
-A modern **room/experience booking website** with **real-time slot availability**, **Razorpay payments**, and a **secure admin dashboard** to manage bookings.
+A modern **room/experience booking website** with **accurate slot availability**, **Razorpay payments**, and a **secure admin dashboard** to manage bookings.
 
 ## Major Features
 
 - **Experience booking flow**
   - Choose package → select date/time → add-ons → checkout → confirmation.
-- **Live availability + conflict prevention**
+- **Availability checking with conflict prevention**
   - Public availability endpoint returns **blocked ranges** and **suggested slots**.
   - Overlap checks happen on both **frontend** (UX) and **backend** (data integrity).
 - **Payment-ready booking holds**
@@ -141,7 +141,4 @@ VITE_API_URL=http://localhost:5000
   - `PATCH /api/bookings/:id/cancel`
   - `PATCH /api/bookings/:id/payment-status`
   - `DELETE /api/bookings/:id`
-
-
-
 
