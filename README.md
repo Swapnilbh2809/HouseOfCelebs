@@ -1,4 +1,4 @@
-# House of Celebs — Booking & Admin Platform
+# Reelm(previously House Of Celebs) — Booking & Admin Platform
 
 A modern **room/experience booking website** with **accurate slot availability**, **Razorpay payments**, and a **secure admin dashboard** to manage bookings.
 
